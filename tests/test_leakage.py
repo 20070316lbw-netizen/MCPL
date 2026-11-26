@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
-from src.quant_research_lab.experiments import leakage
+from src.mcpl import leakage
 
 
 def test_future_shock_changes_label_only():
