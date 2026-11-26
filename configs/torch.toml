@@ -1,0 +1,15 @@
+panel = "runs/panel.parquet"
+output = "runs/torch"
+features = ["intraday", "mean5", "mean20", "vol20"]
+target = "target"
+label = "rank"                  # rank 或 return
+loss = "mse"                    # mse, huber 或 pairwise
+hidden = [32, 16]
+learning_rate = 0.001
+epochs = 4
+seeds = [42]
+windows = [21]                  # 有效信号日数, 0 表示全部
+checkpoints = [0, 1, 5, 10, 20]
+pretrain = ["2019-01-01", "2023-12-31"]
+recovery = ["2024-01-01", "2024-12-31"]
+test = ["2025-01-01", "2025-12-31"]
