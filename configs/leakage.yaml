@@ -1,0 +1,34 @@
+meta:
+  card_id: mcpl-leakage
+  name: leakage_recovery
+  notes: 预测实验, 基准为零收益与两类干净训练, 不建仓
+data:
+  dataset_version: v1.0.0
+  db_path: data/leakage.duckdb
+  start_date: 2019-01-01
+  end_date: 2025-12-31
+  tables: [prices, universe, calendar]
+split:
+  method: holdout
+  is_end_date: 2024-12-31
+  oos_start_date: 2025-01-01
+execution:
+  rebalance_freq: daily
+  long_short: {enabled: false}
+  min_history_days: 20
+audit:
+  n_trials: 9
+  p_adjust_method: holm
+  nw_lags: 5
+model:
+  family: other
+  params:
+    history_start: '2018-11-01'
+    recovery_start: '2024-01-01'
+    checkpoints: [0, 1, 3, 6, 12]
+    seeds: [17, 42, 73]
+    pretrain_epochs: 4
+    equivalence_bp: 0.1
+output:
+  dir: outputs/leakage
+  save_returns: false
